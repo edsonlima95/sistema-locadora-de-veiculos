@@ -1,0 +1,67 @@
+<ui:composition template="/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa de Fabricantes</ui:define>
+
+	<ui:define name="corpo">
+		<h1>Pesquisa de Fabricantes</h1>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<!-- <p:growl id="message" showDetail="true" /> -->
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo" id="botaoNovo"
+						action="/fabricante/CadastroFabricante.xhtml?faces-redirect=true" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="fabricantesTable"
+				value="#{pesquisaFabricanteBean.fabricantes}" var="fabricante"
+				style="margin-top: 20px"
+				emptyMessage="Nenhum fabricante encontrado." rows="20"
+				paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Código"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{fabricante.codigo}" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{fabricante.nome}" />
+				</p:column>
+
+				<p:column style="width: 100px; text-align: center">
+					<p:button outcome="CadastroFabricante" icon="ui-icon-pencil"
+						title="Editar">
+						<f:param name="fabricante" value="#{fabricante.codigo}" />
+					</p:button>
+		
+					<!-- NOVO BOTÃO não chamar! o metodo excluir com actionListener como vem por padrão
+						pois não funcionara...-->
+					  <p:commandButton icon="ui-icon-trash" action="#{pesquisaFabricanteBean.excluir}" update=":frmPesquisa" >
+       						 <p:confirm header="Confirmation" 
+       						 message="Deseja deletar o fabricante ?" 
+       						 icon="ui-icon-alert" />
+       						 
+   							<f:setPropertyActionListener
+							target="#{pesquisaFabricanteBean.fabricanteSelecionado}"
+							value="#{fabricante}" />
+   					  </p:commandButton>
+				</p:column>
+			</p:dataTable>
+		
+			<!-- NOVO DIALOG -->
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+       			 <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+       			 <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    		</p:confirmDialog>
+		</h:form>
+	
+	</ui:define>
+</ui:composition>

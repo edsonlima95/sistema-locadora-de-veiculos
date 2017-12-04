@@ -1,0 +1,15 @@
+package com.algaworks.curso.jpa2.model;
+
+public enum Categoria {
+
+	HACTH_COMPACTO,
+	HACTH_MEDIO,
+	HACTH_COMPLETO,
+	SEDAN_COMPATO,
+	SEDAN_MEDIO,
+	SEDAN_GRANDE,
+	MINIVAN,
+	UTILITARIO_COMERCIAL,
+	ESPORTIVO,
+	
+}

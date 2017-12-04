@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="locadora-veiculo-web:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="locadora-veiculo-web.war">
+      <element id="artifact" artifact-name="locadora-veiculo-web:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="jpa-descriptors" facet="main/jpa/JPA" />
+          <element id="module-output" name="main" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="main/web/Web" />
+    </root>
+  </artifact>
+</component>
